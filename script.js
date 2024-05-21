@@ -1,18 +1,20 @@
-let todayList = document.querySelector("#today-item ol");
-let futureList = document.querySelector("#future-item ol");
-let completedList = document.querySelector("#complete-item ol");
-let todo = document.querySelector("#todo");
-let todoDate = document.querySelector("#date");
-let priority = document.querySelector("#priority");
-let submit = document.querySelector("#submit");
+let todayList = document.querySelector("#today-item ol"); // list of today items div
+let futureList = document.querySelector("#future-item ol"); // list of future items div
+let completedList = document.querySelector("#complete-item ol"); // list of completed items div
+let todo = document.querySelector("#todo"); // todo input
+let todoDate = document.querySelector("#date"); // date input
+let priority = document.querySelector("#priority"); // priority input
+let submit = document.querySelector("#submit"); // submit button
 let todoList = localStorage.getItem("todoList")
   ? JSON.parse(localStorage.getItem("todoList"))
-  : [];
+  : []; //list of todo items to display
 
+//EMPTY ARRAY CHECK
 function checkEmptyArray(obj) {
   return obj.length === 0;
 }
 
+//TODO ITEM CHECKER FUNCTION
 function checkTodoList(todoList) {
   let dd = new Date().getDate();
   let mm = new Date().getMonth() + 1;
@@ -39,6 +41,61 @@ function Itrate(todoList, todayDate) {
   });
 }
 
+//TODO FUNCTIONALITIES
+
+function completeTodo(todo) {
+  let timeOfCmplt = new Date().toLocaleTimeString();
+  let dateOfCmplt = new Date().toLocaleDateString();
+  let completedTime = dateOfCmplt + " at " + timeOfCmplt;
+  let index = parseInt(
+    todo.parentElement.parentElement.parentElement.getAttribute("data-index"),
+    10
+  );
+  console.log(index);
+  todoList[index].status = "completed";
+  todoList[index].fulfilled = completedTime;
+  localStorage.setItem("todoList", JSON.stringify(todoList));
+  checkTodoList(todoList);
+  updateEmptyState();
+}
+function deleteTodo(todo) {
+  let index = parseInt(
+    todo.parentElement.parentElement.parentElement.getAttribute("data-index"),
+    10
+  );
+  todoList = todoList.filter((item, idx) => idx !== index);
+  checkTodoList(todoList);
+  updateEmptyState();
+  localStorage.setItem("todoList", JSON.stringify(todoList));
+}
+function addTodo(event) {
+  event.preventDefault();
+  console.log("clikced");
+  let todoItem = todo.value;
+  let todoItemdate = date.value.split("-").reverse().join("/");
+  console.log("added", todoItemdate);
+  let selectedPriority = priority.value;
+  selectedPriority === "Priority"
+    ? (selectedPriority = "low")
+    : (selectedPriority = priority.value);
+  let todoObj = {
+    todo: todoItem,
+    date: todoItemdate,
+    priority: selectedPriority,
+    status: "pending",
+  };
+  if (checkEmptyArray(todoList)) {
+    todoList.push(todoObj);
+    localStorage.setItem("todoList", JSON.stringify(todoList));
+    checkTodoList(todoList);
+  } else {
+    todoList.push(todoObj);
+    localStorage.setItem("todoList", JSON.stringify(todoList));
+    checkTodoList(todoList);
+  }
+}
+
+//UPDATE UI FUNCTIONS
 function updateUI(item, index, todayDate, index) {
   let { todo, date, priority, status, fulfilled } = item;
 
@@ -110,58 +167,6 @@ function ui(todo, date, priority, status, fulfilled, index) {
     </li>`;
 }
 
-function completeTodo(todo) {
-  let timeOfCmplt = new Date().toLocaleTimeString();
-  let dateOfCmplt = new Date().toLocaleDateString();
-  let completedTime = dateOfCmplt + " at " + timeOfCmplt;
-  let index = parseInt(
-    todo.parentElement.parentElement.parentElement.getAttribute("data-index"),
-    10
-  );
-  console.log(index);
-  todoList[index].status = "completed";
-  todoList[index].fulfilled = completedTime;
-  localStorage.setItem("todoList", JSON.stringify(todoList));
-  checkTodoList(todoList);
-  updateEmptyState();
-}
-function deleteTodo(todo) {
-  let index = parseInt(
-    todo.parentElement.parentElement.parentElement.getAttribute("data-index"),
-    10
-  );
-  todoList = todoList.filter((item, idx) => idx !== index);
-  checkTodoList(todoList);
-  updateEmptyState();
-  localStorage.setItem("todoList", JSON.stringify(todoList));
-}
-function addTodo(event) {
-  event.preventDefault();
-  console.log("clikced");
-  let todoItem = todo.value;
-  let todoItemdate = date.value.split("-").reverse().join("/");
-  console.log("added", todoItemdate);
-  let selectedPriority = priority.value;
-  selectedPriority === "Priority"
-    ? (selectedPriority = "low")
-    : (selectedPriority = priority.value);
-  let todoObj = {
-    todo: todoItem,
-    date: todoItemdate,
-    priority: selectedPriority,
-    status: "pending",
-  };
-  if (checkEmptyArray(todoList)) {
-    todoList.push(todoObj);
-    localStorage.setItem("todoList", JSON.stringify(todoList));
-    checkTodoList(todoList);
-  } else {
-    todoList.push(todoObj);
-    localStorage.setItem("todoList", JSON.stringify(todoList));
-    checkTodoList(todoList);
-  }
-}
-
 function updateEmptyState() {
   document.querySelector("#empty-today").style.display =
     todayList.children.length === 0 ? "block" : "none";
@@ -181,7 +186,7 @@ function setDefaultDate() {
   todoDate.value = today;
   todoDate.min = today;
 }
-
+//CALLING THE FUNCTION WHEN DOM IS LOADED
 document.addEventListener("DOMContentLoaded", function () {
   setDefaultDate();
   checkTodoList(todoList);

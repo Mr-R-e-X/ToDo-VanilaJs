@@ -12,12 +12,14 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body class="bg-gray-100 flex flex-col items-center min-h-screen">
+    <!-- NAVBAR -->
     <nav class="w-full py-4 bg-white shadow">
       <h1 class="text-3xl font-bold text-black tracking-wider text-center">
         To-Do List
       </h1>
     </nav>
     <main class="w-full flex-grow">
+      <!-- INPUT FORM -->
       <div
         id="form"
         class="w-full max-w-4xl mx-auto my-6 bg-white shadow-lg p-6 rounded-lg"
@@ -60,10 +62,13 @@
           />
         </form>
       </div>
+      <!-- TODO DISPLAY -->
+      <!-- TODAY DISPLAY -->
       <div id="today-todo" class="w-full max-w-4xl mx-auto my-6">
         <h1 class="text-xl font-semibold mb-4 px-6">Today's Todo List</h1>
         <div id="today-item">
           <ol class="px-6 space-y-2"></ol>
+          <!-- TODO EMPTY DISPLAY -->
           <div id="empty-today" class="text-center text-gray-500 mt-6">
             <img
               src="https://cdn-icons-png.flaticon.com/128/2748/2748558.png"
@@ -74,10 +79,12 @@
           </div>
         </div>
       </div>
+      <!-- FUTURE TODO DISPLAY -->
       <div id="future-todo" class="w-full max-w-4xl mx-auto my-6">
         <h1 class="text-xl font-semibold mb-4 px-6">Future Todo List</h1>
         <div id="future-item">
           <ol class="px-6 space-y-2"></ol>
+          <!-- TODO EMPTY DISPLAY -->
           <div id="empty-future" class="text-center text-gray-500 mt-6">
             <img
               src="https://cdn-icons-png.flaticon.com/128/2748/2748558.png"
@@ -88,10 +95,12 @@
           </div>
         </div>
       </div>
+      <!-- COMPLETED TODO -->
       <div id="complete-todo" class="w-full max-w-4xl mx-auto my-6">
         <h1 class="text-xl font-semibold mb-4 px-6">Completed Todo List</h1>
         <div id="complete-item">
           <ol class="px-6 space-y-2"></ol>
+          <!-- TODO EMPTY DISPLAY -->
           <div id="empty-complete" class="text-center text-gray-500 mt-6">
             <img
               src="https://cdn-icons-png.flaticon.com/128/2748/2748558.png"
