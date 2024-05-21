@@ -3,12 +3,106 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ToDos</title>
+    <title>ToDo's</title>
     <link
       rel="icon"
       type="image/x-icon"
-      href="https://cdn-icons-png.flaticon.com/128/9099/9099168.png"
+      href="https://cdn-icons-png.flaticon.com/128/9099/9099180.png"
     />
+    <link rel="stylesheet" href="style.css" />
   </head>
-  <body></body>
+  <body class="bg-gray-100 flex flex-col items-center min-h-screen">
+    <nav class="w-full py-4 bg-white shadow">
+      <h1 class="text-3xl font-bold text-black tracking-wider text-center">
+        To-Do List
+      </h1>
+    </nav>
+    <main class="w-full flex-grow">
+      <div
+        id="form"
+        class="w-full max-w-4xl mx-auto my-6 bg-white shadow-lg p-6 rounded-lg"
+      >
+        <form
+          action="#"
+          class="w-full flex flex-col md:flex-row justify-around items-center gap-4"
+        >
+          <input
+            type="text"
+            name="todo"
+            id="todo"
+            placeholder="To-Do"
+            required
+            class="flex-grow border border-gray-300 px-4 py-2 rounded-lg w-full md:w-auto cursor-pointer"
+          />
+          <input
+            type="date"
+            name="date"
+            id="date"
+            placeholder="Deadline"
+            required
+            class="border border-gray-300 px-3 py-2 rounded-lg w-full md:w-auto cursor-pointer"
+          />
+          <select
+            id="priority"
+            required
+            class="border border-gray-300 px-3 py-2 rounded-lg w-full md:w-auto cursor-pointer"
+          >
+            <option selected disabled>Priority</option>
+            <option value="high">High</option>
+            <option value="medium">Medium</option>
+            <option value="low">Low</option>
+          </select>
+          <input
+            type="submit"
+            value="Add ToDo"
+            id="submit"
+            class="border border-gray-300 bg-black text-white px-3 py-2 rounded-lg w-full md:w-auto cursor-pointer"
+          />
+        </form>
+      </div>
+      <div id="today-todo" class="w-full max-w-4xl mx-auto my-6">
+        <h1 class="text-xl font-semibold mb-4 px-6">Today's Todo List</h1>
+        <div id="today-item">
+          <ol class="px-6 space-y-2"></ol>
+          <div id="empty-today" class="text-center text-gray-500 mt-6">
+            <img
+              src="https://cdn-icons-png.flaticon.com/128/2748/2748558.png"
+              alt="Empty"
+              class="h-24 w-24 mx-auto"
+            />
+            <p>No tasks for today. Add a task to get started!</p>
+          </div>
+        </div>
+      </div>
+      <div id="future-todo" class="w-full max-w-4xl mx-auto my-6">
+        <h1 class="text-xl font-semibold mb-4 px-6">Future Todo List</h1>
+        <div id="future-item">
+          <ol class="px-6 space-y-2"></ol>
+          <div id="empty-future" class="text-center text-gray-500 mt-6">
+            <img
+              src="https://cdn-icons-png.flaticon.com/128/2748/2748558.png"
+              alt="Empty"
+              class="h-24 w-24 mx-auto"
+            />
+            <p>No future tasks. Plan ahead and add some!</p>
+          </div>
+        </div>
+      </div>
+      <div id="complete-todo" class="w-full max-w-4xl mx-auto my-6">
+        <h1 class="text-xl font-semibold mb-4 px-6">Completed Todo List</h1>
+        <div id="complete-item">
+          <ol class="px-6 space-y-2"></ol>
+          <div id="empty-complete" class="text-center text-gray-500 mt-6">
+            <img
+              src="https://cdn-icons-png.flaticon.com/128/2748/2748558.png"
+              alt="Empty"
+              class="h-24 w-24 mx-auto"
+            />
+            <p>No completed tasks. Finish some tasks to see them here!</p>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="script.js"></script>
+  </body>
 </html>
