@@ -152,6 +152,7 @@ function ui(todo, date, priority, status, fulfilled, index) {
                    src="https://cdn-icons-png.flaticon.com/128/10015/10015332.png"
                    alt="Complete"
                    class="h-5 w-5 cursor-pointer sm:mx-2"
+                   title="Mark Complete"
                    onclick="completeTodo(this)"
                  />`
               : ""
@@ -160,6 +161,7 @@ function ui(todo, date, priority, status, fulfilled, index) {
             src="https://cdn-icons-png.flaticon.com/128/9713/9713380.png"
             alt="Delete"
             class="h-5 w-5 cursor-pointer sm:mx-2"
+            title="Delete Todo"
             onclick="deleteTodo(this)"
           />
         </div>
