@@ -45,8 +45,12 @@ function Itrate(todoList, todayDate) {
 
 function completeTodo(todo) {
   let timeOfCmplt = new Date().toLocaleTimeString();
-  let dateOfCmplt = new Date().toLocaleDateString();
-  let completedTime = dateOfCmplt + " at " + timeOfCmplt;
+  let dd = new Date().getDate();
+  let mm = new Date().getMonth() + 1;
+  let yyyy = new Date().getFullYear();
+  let completedTime = `${dd < 10 ? `0${dd}` : `${dd}`}/${
+    mm < 10 ? `0${mm}` : `${mm}`
+  }/${yyyy} at ${timeOfCmplt}`;
   let index = parseInt(
     todo.parentElement.parentElement.parentElement.getAttribute("data-index"),
     10
